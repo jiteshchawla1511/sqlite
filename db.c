@@ -178,7 +178,7 @@ PrepareResult prepare_insert(InputBuffer* input_buffer,Statement* statement) {
 
 PrepareResult prepare_statement(InputBuffer* input_buffer,Statement* statement) {
   if (strncmp(input_buffer->buffer, "insert", 6) == 0) {
-    return prepare_statement(input_buffer,statement);
+    return prepare_insert(input_buffer,statement);
   }
   if (strcmp(input_buffer->buffer, "select") == 0) {
     statement->type = STATEMENT_SELECT;
@@ -205,7 +205,8 @@ ExecuteResult execute_insert(Statement* statement,Table* table){
     return EXECUTE_SUCCESS;
 }
 
-ExecuteResult execute_select (Statement* statement,Table* table){
+
+ExecuteResult execute_select(Statement* statement,Table* table){
     Row row;
     for (uint32_t i = 0;i < table->num_rows;i ++){
         deserialzie_row(row_slot(table,i),&row);
