@@ -1,2 +1,2 @@
 # sqlite
-Writing a sqlite in C (FROM SCRATCH)
+Trying to re-implement the sqlite in C 
